@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.buzachero.app.cashback.services.exceptions.ObjectNotFoundException;
+import com.buzachero.app.cashback.services.exceptions.InvalidPeriod;
 
 import java.time.format.*;
 
@@ -27,6 +28,14 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StandardError> dateTimeInvalid(DateTimeParseException e, HttpServletRequest request) {
 		
 		StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Data invalida", e.getMessage(), request.getRequestURI());		
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
+	
+	@ExceptionHandler(InvalidPeriod.class)
+	public ResponseEntity<StandardError> periodInvalid(InvalidPeriod e, HttpServletRequest request) {
+		
+		StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Periodo invalido", e.getMessage(), request.getRequestURI());		
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}

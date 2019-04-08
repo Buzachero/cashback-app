@@ -21,6 +21,7 @@ import com.buzachero.app.cashback.domain.ItemVenda;
 import com.buzachero.app.cashback.domain.Venda;
 import com.buzachero.app.cashback.repositories.ItemVendaRepository;
 import com.buzachero.app.cashback.repositories.VendaRepository;
+import com.buzachero.app.cashback.services.exceptions.InvalidPeriod;
 import com.buzachero.app.cashback.services.exceptions.ObjectNotFoundException;
 import com.buzachero.app.cashback.utils.TabelaCashbackUtils;
 
@@ -76,7 +77,7 @@ public class VendaService {
 		finalDate = LocalDate.parse(dataVendaFinal, formatter);
 		
 		if(initialDate.isAfter(finalDate)) {
-			throw new RuntimeException("Erro! Data inicial deve ser antes de data final!");
+			throw new InvalidPeriod("Data inicial " + dataVendaInicial + " é posterior a data final " + dataVendaFinal);
 		}
 		
 		return vendaRepository.findVendas(LocalDateTime.of(initialDate, LocalTime.of(0, 0)), LocalDateTime.of(finalDate, LocalTime.of(23, 59)), pageable);		

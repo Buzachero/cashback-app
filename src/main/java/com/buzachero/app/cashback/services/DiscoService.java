@@ -38,7 +38,7 @@ public class DiscoService {
 	
 	public Page<Disco> findPage(GeneroDisco generoDisco, Integer page, Integer linesPerPage, String orderBy, String direction) {
 		Pageable pageable = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy); 
-		//return discoRepository.findAll(pageRequest);
+		
 		return discoRepository.findByGenero(generoDisco, pageable);
 	}
 	

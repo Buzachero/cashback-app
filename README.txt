@@ -17,7 +17,7 @@ java -jar cashback-app-1.0.0.jar
 Pronto! O servidor backend estará executando na porta 8080
 
 _______________________
-INFORMACOES DO PROJETO
+PARAMETROS DO PROJETO
 
 A configuracão da aplicação pode ser realizada em dois arquivos:
 1. application-test.properties 
@@ -30,6 +30,11 @@ ou seja, a origem desses dados é da própria aplicação.
 
 No cenário do segundo properties, as informações de discos e as vendas são oriundas da web api do Spotify, 
 ou seja, a origem desses dados é externa.
+
+No properties também pode ser configurado a tabela de cashback. 
+Exemplo:
+param.cshback_pop_domingo = 0.25 (25% de cashback para disco POP se comprado no domingo)
+param.cshback_mpb_segunda = 0.05 (5% de cashback para disco MPB se comprado na segunda)
 
 _______________________
 REALIZACAO DOS TESTES
